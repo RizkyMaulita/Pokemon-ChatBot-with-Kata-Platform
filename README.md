@@ -11,4 +11,4 @@ https://pokeapi.co/api/v2/pokemon/{id or name}/
 http://t.me/pokemon_by_litha_v2_bot
 
 #### notes: 
-###### sorry, masih terdapat bug dalam chat nya 
+###### Maaf, masih terdapat bug dalam chat nya 
