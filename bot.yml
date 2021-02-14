@@ -1,0 +1,37 @@
+schema: kata.ai/schema/kata-ml/1.0
+name: bot_pokemon_by_litha
+desc: My First Bot
+flows:
+    hello: $include(./flows/hello.yml)
+    pokemon: $include(./flows/pokemon.yml)
+nlus:
+    username:
+        type: regex
+        options:
+            regex: my name is (.+)
+            index: 1
+    startBot:
+        type: keyword
+        options:
+            keywords:
+                start:
+                    - start
+                    - /start
+                    - hi
+                    - Hi
+                    - Hello
+                    - hello
+                    - Hai
+    showGreeting:
+        type: keyword
+        options:
+            keywords:
+                pokemon:
+                    - Pokemon information
+                    - pokemon information
+                    - Pokemon information
+    pokemon:
+        type: regex
+        options:
+            regex: (.+)
+tag: null

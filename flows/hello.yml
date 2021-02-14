@@ -1,0 +1,64 @@
+fallback: true
+intents:
+  greeting:
+    initial: true
+    type: text
+    classifier: 
+      nlu: startBot
+      match: start
+  username:
+    # initial: true
+    type: text
+    classifier: 
+      nlu: username
+    attributes:
+      username:
+        nlu: username
+  fallback:
+    fallback: true
+states:
+  init:
+    initial: true
+    transitions:
+      askName:
+        condition: intent == "greeting"
+      init:
+        fallback: true
+  askName:
+    action:
+      name: askName
+    transitions:
+      confrimName:
+        # condition: 'intent == "username"'
+        mapping:
+          context.username: 'attributes.username'
+  confrimName:
+    action: 
+      name: confrimName
+    transitions:
+      greetingPokemon:
+        # condition: 'intent == "username"'
+        mapping:
+          context.username: "attributes.username"
+  greetingPokemon:
+    end: true
+    action:
+      name: greetingPokemon
+  other:
+    action:
+      name: text
+      options:
+        text: Sorry, I don't understand !
+actions:
+  askName:
+    type: text
+    options: 
+      text: Hello what's your name ? Please enter ('my name is ...')
+  confrimName:
+    type: text
+    options: 
+      text: 'So your name is $(context.username) ?'
+  greetingPokemon:
+    type: text
+    options:
+      text: 'Welcome to PokeBot, $(context.username) ! You can send "Pokemon information" to get information about a pokemon'
